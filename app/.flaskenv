@@ -1,0 +1,2 @@
+FLASK_APP=link_ease
+FLASK_ENV=development
