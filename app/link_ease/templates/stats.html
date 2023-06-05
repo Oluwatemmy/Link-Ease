@@ -17,14 +17,14 @@
                 <thead>
                     <tr>
                         <th>Original URL</th>
-                        <th>Short URL</th>
+                        <th>Short URL / Custom URL</th>
                         <th>Visits</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Original URL</th>
-                        <th>Short URL</th>
+                        <th>Short URL / Custom URL</th>
                         <th>Visits</th>
                     </tr>
                 </tfoot>
@@ -33,7 +33,11 @@
                         <tr>
                             
                             <td>{{ link.original_url }}</td>
-                            <td>{{ url_for('short.redirect_to_url', short_url=link.short_url, _external=True) }}</td>
+                            {% if link.custom_url %}
+                                <td>{{ url_for('short.redirect_to_url', short_url=link.custom_url, _external=True) }}</td>
+                            {% else %}
+                                <td>{{ url_for('short.redirect_to_url', short_url=link.short_url, _external=True) }}</td>
+                            {% endif %}
                             <td>{{ link.visits }}</td>
                         </tr>
                     {% endfor %}

@@ -1,24 +1,86 @@
+// Get the form element, cancel button and the email validation message element
+const form = document.getElementById('register-form');
+const cancelButton = document.getElementById('cancel-button');
+const emailValidationMessage = document.getElementById('email-validation-message');
 
-const shortenUrl = async () => {
-    const longUrl = document.getElementById('long-url').value;
-    const response = await fetch(`https://api.shrtco.de/v2/shorten?url=${longUrl}`);
-    const data = await response.json();
-    const shortUrl = data.result.full_short_link;
+// Function to validate the form
+function validateForm(event) {
+    // Get the form inputs
+    const nameInput = form.elements['name'];
+    const emailInput = form.elements['email'];
+    const passwordInput = form.elements['password'];
+    const confirmPasswordInput = form.elements['confirm_password'];
+    const agreeTermsInput = form.elements['agree_terms'];
 
-    const shortUrlContainer = document.getElementById('short-url-container');
-    const shortUrlLink = document.getElementById('short-url').querySelector('a');
-    shortUrlLink.href = shortUrl;
-    shortUrlLink.textContent = shortUrl;
-    shortUrlContainer.style.display = 'block';
+    // Perform basic validation
+    if (nameInput.value.trim() === '') {
+        alert('Please enter your name');
+        event.preventDefault();
+        return;
+    }
 
-    const copyBtn = document.getElementById('copy-btn');
-    copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(shortUrl).then(() => {
-            alert('Copied to clipboard!');
-        });
-    });
-};
+    if (emailInput.value.trim() === '') {
+        alert('Please enter your email');
+        event.preventDefault();
+        return;
+    }
 
-const shortenBtn = document.getElementById('shorten-btn');
-shortenBtn.addEventListener('click', shortenUrl);
+    if (!isValidEmail(emailInput.value)) {
+        alert('Please enter a valid email');
+        event.preventDefault();
+        return;
+    }
+
+    if (passwordInput.value.trim() === '') {
+        alert('Please enter a password');
+        event.preventDefault();
+        return;
+    }
+
+    if (confirmPasswordInput.value.trim() === '') {
+        alert('Please confirm your password');
+        event.preventDefault();
+        return;
+    }
+
+    if (passwordInput.value !== confirmPasswordInput.value) {
+        alert('Passwords do not match');
+        event.preventDefault();
+        return;
+    }
+
+    if (!agreeTermsInput.checked) {
+        alert('Please agree to the terms and conditions');
+        event.preventDefault();
+        return;
+    }
+
+    // Check if the email is valid
+    if (emailInput.validity.valid) {
+        // Set the success message
+        emailValidationMessage.innerHTML = '<p class="fas fa-check">Valid</p>';
+    } else {
+        // Set the error message
+        emailValidationMessage.innerHTML = '<p class="help is-danger">This email is invalid</p>';
+    }
+}
+
+// Function to clear the form
+function clearForm() {
+    form.reset();
+}
+
+// Function to validate email format
+function isValidEmail(email) {
+    // Regular expression to validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Add event listener for cancel button click
+cancelButton.addEventListener('click', clearForm);
+
+// Add event listener for form submission
+form.addEventListener('submit', validateForm);
+
 

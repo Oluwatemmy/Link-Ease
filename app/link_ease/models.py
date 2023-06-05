@@ -1,7 +1,8 @@
 from datetime import datetime
 import string
 from random import choices
-from .extensions import db
+from .extensions import db, login_manager, bcrypt
+from flask_login import UserMixin
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -10,10 +11,12 @@ class Link(db.Model):
     custom_url = db.Column(db.String(50), unique=True)
     visits = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime(), default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.short_url = self.generate_short_link()
+        if not self.custom_url:
+            self.short_url = self.generate_short_link()
 
     def save(self):
         db.session.add(self)
@@ -30,3 +33,28 @@ class Link(db.Model):
             return self.generate_short_link()
         
         return short_url
+    
+
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), nullable=False)
+    email = db.Column(db.String(50), unique=True)
+    password = db.Column(db.String(128), nullable=False)
+    date_created = db.Column(db.DateTime(), default=datetime.now)
+    links = db.relationship('Link', backref='user', lazy=True)
+
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.password = self.hash_password(password)
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+    
+    def hash_password(self, password):
+        return bcrypt.generate_password_hash(password).decode('utf-8')
