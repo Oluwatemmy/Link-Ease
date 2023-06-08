@@ -1,17 +1,25 @@
-from flask import Blueprint, render_template, url_for, request, redirect
-from .models import Link, User
-from .extensions import db, bcrypt
 import validators
+from datetime import datetime
+from .models import Link, User
 from flask_caching import Cache
 from flask_limiter import Limiter
+from .extensions import db, bcrypt
+from .utils.views import fresh_login_required
 from flask_limiter.util import get_remote_address
 from flask_login import login_required, current_user, login_user, logout_user
+from flask import Blueprint, render_template, url_for, request, redirect, flash
 
 # Create the limiter and cache objects
 limiter = Limiter(get_remote_address)
 cache = Cache(config={'CACHE_TYPE': 'SimpleCache'})
 
 short = Blueprint('short', __name__)
+
+@short.before_request
+def update_last_seen():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 
 @short.route('/<short_url>')
@@ -33,6 +41,8 @@ def index():
 
 @short.route('/add_link', methods=['POST'])
 @limiter.limit("10/minutes") # Limit to 10 requests per minute
+@login_required
+@fresh_login_required # Require a fresh login to add a link
 def add_link():
     # Get the url and custom url from the form
     original_url = request.form['long-url']
@@ -77,8 +87,12 @@ def add_link():
 
 
 @short.route('/stats')
-@cache.cached(timeout=60)  # Cache the response for 60 seconds
+@cache.cached(timeout=10)  # Cache the response for 10 seconds
+@login_required
+@fresh_login_required
 def stats():
+    if not current_user.is_authenticated:
+        return redirect(url_for('short.login', next=request.url))
     links = Link.query.all()
     
     return render_template('stats.html', links=links)
@@ -90,27 +104,34 @@ def error_404(error):
 
 @short.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('short.index'))
     if request.method == 'POST':
         # Get the form data
-        name = request.form['name']
+        username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
 
         # Check if password and confirm password match
         if password != confirm_password:
+            # flash a message to the user
+            flash('Passwords do not match', 'danger')
             return render_template('register.html', password_match=False, error_message='Passwords do not match')
         
         # Check if the email is already in use
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
+            # flash a message to the user
+            flash('Email already exists', 'danger')
             return render_template('register.html', email_exists=True, error_message='Email already in use')
-        # hash the password
-        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        # create a new user object
-        user = User(name=name, email=email, password=hashed_password)
+        # create a new user object and hash the password
+        user = User(username=username, email=email)
+        user.set_password(password)
         # save the user object
         user.save()
+        # send a message to the user
+        flash('You have successfully registered! Please log in.','success')
         return redirect(url_for('short.login'))
 
     return render_template('register.html')
@@ -118,4 +139,30 @@ def register():
 
 @short.route("/login", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('short.index'))
+    if request.method == 'POST':
+        # Get the form data
+        email = request.form['email']
+        password = request.form['password']
+        remember_me = request.form['remember_me']
+
+
+        # Check if the email exists and passwords match with the database
+        user = User.query.filter_by(email=email).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            # Log the user in
+            login_user(user, remember=remember_me)
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('short.index'))
+        else:
+            # flash a message to the user
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+
     return render_template('login.html')
+
+
+@short.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('short.index'))

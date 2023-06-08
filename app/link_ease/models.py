@@ -37,15 +37,18 @@ class Link(db.Model):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), nullable=False)
+    username = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(128), nullable=False)
     date_created = db.Column(db.DateTime(), default=datetime.now)
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     links = db.relationship('Link', backref='user', lazy=True)
 
-    def __init__(self, name, email, password):
-        self.name = name
+    def __init__(self, username, email):
+        self.username = username
         self.email = email
+
+    def set_password(self, password):
         self.password = self.hash_password(password)
     
     def save(self):

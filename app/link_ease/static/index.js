@@ -1,6 +1,5 @@
 // Get the form element, cancel button and the email validation message element
 const form = document.getElementById('register-form');
-const cancelButton = document.getElementById('cancel-button');
 const emailValidationMessage = document.getElementById('email-validation-message');
 
 // Function to validate the form
@@ -58,17 +57,13 @@ function validateForm(event) {
     // Check if the email is valid
     if (emailInput.validity.valid) {
         // Set the success message
-        emailValidationMessage.innerHTML = '<p class="fas fa-check">Valid</p>';
+        emailValidationMessage.innerHTML = '<i class="fas fa-check"></i>';
     } else {
         // Set the error message
-        emailValidationMessage.innerHTML = '<p class="help is-danger">This email is invalid</p>';
+        emailValidationMessage.innerHTML = '< class="help is-danger"></>';
     }
 }
 
-// Function to clear the form
-function clearForm() {
-    form.reset();
-}
 
 // Function to validate email format
 function isValidEmail(email) {
