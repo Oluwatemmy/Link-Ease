@@ -1,13 +1,11 @@
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Link Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
@@ -68,34 +66,40 @@
 
     <section class="section">
         <div class="container">
+            <h1 class="title" style="text-align: center;">Link Details</h1>
             <table class="table">
-                <thead>
-                    <tr>
-                        <th>Original URL</th>
-                        <th>Short URL / Custom URL</th>
-                        <th>Visits</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Original URL</th>
-                        <th>Short URL / Custom URL</th>
-                        <th>Visits</th>
-                    </tr>
-                </tfoot>
                 <tbody>
-                    {% for link in links %}
-                        <tr>
-                            
-                            <td>{{ link.original_url }}</td>
-                            {% if link.custom_url %}
-                                <td>{{ url_for('short.redirect_to_url', short_url=link.custom_url, _external=True) }}</td>
-                            {% else %}
-                                <td>{{ url_for('short.redirect_to_url', short_url=link.short_url, _external=True) }}</td>
-                            {% endif %}
-                            <td>{{ link.visits }}</td>
-                        </tr>
-                    {% endfor %}
+                    <tr>
+                        <th>Original URL</th>
+                        <td>{{ link.original_url }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Shortened URL</th>
+                        <td>{{ url_for('short.redirect_to_url', short_url=new_link, _external=True or 'N/A') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Visits</th>
+                        <td>{{ link.visits }}</td>
+                    </tr>
+                    <tr>
+                        
+                        <td style="text-align: center;">
+                            <img src="{{ url_for('static', filename='image/' + qr_code_url, _external=True) }}" alt="QR Code">
+                            <div class="field">
+                                <p class="control">
+                                    <a href="{{ url_for('short.download_qr_code', qr_code_url=link.qr_code_url) }}">
+                                        <button class="button is-success">
+                                            Download QR Code
+                                        </button>
+                                    </a>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
         </div>
     </section>
 </body>

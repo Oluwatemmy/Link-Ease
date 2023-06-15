@@ -11,6 +11,7 @@ class Link(db.Model):
     custom_url = db.Column(db.String(50), unique=True)
     visits = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime(), default=datetime.now)
+    qr_code_url = db.Column(db.String(512))    # New field for storing QR code image URL
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, **kwargs):
@@ -33,6 +34,12 @@ class Link(db.Model):
             return self.generate_short_link()
         
         return short_url
+    
+    # Set the QR code image path
+    def set_qr_code_path(self, image_path):
+        self.qr_code_url = image_path
+        self.save()
+
     
 
 class User(db.Model, UserMixin):
