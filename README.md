@@ -42,7 +42,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-scissor">About Scissor</a>
+      <a href="#about-link-ease">About Link-Ease</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -77,9 +77,9 @@
 ---
 
 <!-- About the Tool -->
-## About Scissor
+## About Link-Ease
 
-Scissor is a powerful URL shortening tool designed to make sharing links easier and more convenient in today's fast-paced world of social media. With Scissor, you can transform long, unwieldy URLs into concise, memorable links and generate QR codes for quick mobile access. 
+Link-Ease is a powerful URL shortening tool designed to make sharing links easier and more convenient in today's fast-paced world of social media. With Link-Ease, you can transform long, unwieldy URLs into concise, memorable links and generate QR codes for quick mobile access. 
 
 Our intuitive interface, customizable links, and detailed analytics provide a seamless user experience, making it the perfect tool for marketers, content creators, and anyone looking to share links efficiently. Join Scissor today and experience the power of concise, shareable links.
 
@@ -228,7 +228,7 @@ On gitbash terminal
 
 <br />
 
-[![Scissor Screenshot][scissor-screenshot]](https://github.com/Ze-Austin/scissor/blob/main/website/static/screenshots/scissor.png)
+[![Link-Ease Screenshot][linkease-screenshot]](https://github.com/Ze-Austin/scissor/blob/main/website/static/screenshots/scissor.png)
 
 <br/>
 
@@ -260,9 +260,9 @@ Dr Austin Wopara - [@Oluwatemmy15](https://twitter.com/Oluwatemmy15) - oluwaseyi
 
 Live Site: [sciz.site](https://www.sciz.site)
 
-Project Link: [Scissor Repo](https://github.com/Oluwatemmy/Link-Ease)
+Project Link: [Link-Ease Repo](https://github.com/Oluwatemmy/Link-Ease)
 
-Documentation: [Scissor Wiki](https://github.com/Oluwatemmy/Link-Ease/blob/main/README.md)
+Documentation: [Link-Ease Wiki](https://github.com/Oluwatemmy/Link-Ease/blob/main/README.md)
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -299,7 +299,7 @@ This project was made possible by:
 [license-url]: https://github.com/Oluwatemmy/Link-Ease/blob/main/LICENSE.txt
 [twitter-shield]: https://img.shields.io/badge/-@Oluwatemmy15-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/Oluwatemmy15
 [twitter-url]: https://twitter.com/Oluwatemmy15
-[scissor-screenshot]: website/static/screenshots/scissor.png
+[linkease-screenshot]: website/static/screenshots/scissor.png
 [dashboard-screenshot]: website/static/screenshots/dashboard.png
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [flask]: https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white
