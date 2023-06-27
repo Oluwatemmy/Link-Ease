@@ -25,7 +25,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #8f94fb;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Link-Ease</a>
+                <a class="navbar-brand" href="{{ url_for('short.index') }}">Link-Ease</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,16 +34,13 @@
                     {% if current_user.is_authenticated %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('short.index') }}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('short.logout') }}">Logout</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('short.stats') }}">History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
                             </li>
                         </ul>
                     {% else %}

@@ -4,6 +4,7 @@ from random import choices
 from .extensions import db, login_manager, bcrypt
 from flask_login import UserMixin
 
+
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     original_url = db.Column(db.String(512))
@@ -11,7 +12,6 @@ class Link(db.Model):
     custom_url = db.Column(db.String(50), unique=True)
     visits = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime(), default=datetime.now)
-    qr_code_url = db.Column(db.String(512))    # New field for storing QR code image URL
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, **kwargs):
@@ -22,6 +22,7 @@ class Link(db.Model):
     def save(self):
         db.session.add(self)
         db.session.commit()
+        
 
     # Generate the short link
     def generate_short_link(self):
@@ -34,13 +35,7 @@ class Link(db.Model):
             return self.generate_short_link()
         
         return short_url
-    
-    # Set the QR code image path
-    def set_qr_code_path(self, image_path):
-        self.qr_code_url = image_path
-        self.save()
 
-    
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +44,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(128), nullable=False)
     date_created = db.Column(db.DateTime(), default=datetime.now)
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    password_reset_token = db.Column(db.String(50), nullable=True)
+    password_reset_token_expiration = db.Column(db.DateTime, nullable=True)
     links = db.relationship('Link', backref='user', lazy=True)
 
     def __init__(self, username, email):

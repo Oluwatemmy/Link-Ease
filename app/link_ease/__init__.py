@@ -7,6 +7,7 @@ from .routes import short
 
 login_manager.login_view = 'short.login'
 
+
 def create_app(config_file='settings.py'):
     app = Flask(__name__)
     app.config.from_pyfile(config_file)

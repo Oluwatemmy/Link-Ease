@@ -44,9 +44,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('short.stats') }}">History</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
-                            </li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -68,12 +65,14 @@
 
     <section class="section">
         <div class="container">
+            <h1 class="title" style="text-align: center;">Link History</h1>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Original URL</th>
                         <th>Short URL / Custom URL</th>
                         <th>Visits</th>
+                        <th>Date Created</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -81,6 +80,7 @@
                         <th>Original URL</th>
                         <th>Short URL / Custom URL</th>
                         <th>Visits</th>
+                        <th>Date Created</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -94,6 +94,17 @@
                                 <td>{{ url_for('short.redirect_to_url', short_url=link.short_url, _external=True) }}</td>
                             {% endif %}
                             <td>{{ link.visits }}</td>
+                            <td>{{ link.date_created.strftime('%I:%M%p %B %d, %Y') }}</td>
+                            <td>
+                                <a href="{{ url_for('short.view_link', link_id=link.id) }}">
+                                    <button class="btn btn-primary">View Details</button>
+                                </a>
+                            </td>
+                            <td>  <!-- Added delete button -->
+                                <form action="{{ url_for('short.delete_url', url_id=link.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this URL?')">
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
         </div>

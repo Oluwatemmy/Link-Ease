@@ -153,8 +153,8 @@ form input[type="text"] {
 }
 
 form button {
-    background-color: #fff;
-    color: #8f94fb;
+    background-color: #8f94ff;
+    color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;

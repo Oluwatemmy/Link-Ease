@@ -42,9 +42,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('short.stats') }}">History</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Dashboard</a>
-                            </li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -66,12 +63,30 @@
 
     <section class="section">
         <div class="container">
-            Old Link: {{ original_url }} <br />
-            New Link: {{ url_for('short.redirect_to_url', short_url=new_link, _external=True) }} <br />
-            Visits: {{ visits }} <br />
-            {% if qr_code_url %}
-                <img src="{{ url_for('static', filename='image/' + qr_code_url, _external=True) }}" alt="QR Code">
-            {% endif %}
+            <h1 class="title" style="text-align: center;">Link Details</h1>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Original URL</th>
+                        <td>{{ original_url }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Shortened URL</th>
+                        <td>{{ url_for('short.redirect_to_url', short_url=new_link, _external=True or 'N/A') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Visits</th>
+                        <td>{{ visits }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">
+                            <img src="{{url_for('short.generate_qr_code_url', short_url=new_link, _external=True)}}" alt="QR Code">
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
         </div>
     </section>
 </body>
