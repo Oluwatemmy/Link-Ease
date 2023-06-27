@@ -362,25 +362,3 @@ def delete_url(url_id):
     
     return redirect(url_for('short.index'))
 
-
-@short.route('/edit-url/<int:url_id>', methods=['GET', 'POST'])
-@login_required
-def edit_url(url_id):
-    url = Link.query.get_or_404(url_id)
-
-    # Check if the current user is the owner of the URL
-    if url.user_id != current_user.id:
-        abort(403)
-
-    if request.method == 'POST':
-        # Get the form data
-        url.long_url = request.form['long_url']
-        url.short_url = request.form['short_url']
-
-        db.session.commit()
-
-        return redirect(url_for('short.index'))
-
-    return render_template('edit_url.html', url=url)
-
-
