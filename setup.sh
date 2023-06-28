@@ -1,1 +1,1 @@
-export D
+export DATABASE_URL = ''
