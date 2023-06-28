@@ -10,7 +10,7 @@ from .settings import config_dict
 login_manager.login_view = 'short.login'
 
 
-def create_app(config=config_dict['prod']):
+def create_app(config=config_dict['dev']):
     app = Flask(__name__)
     app.config.from_object(config)
 

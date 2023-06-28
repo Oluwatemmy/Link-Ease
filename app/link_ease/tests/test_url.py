@@ -3,11 +3,12 @@ from link_ease.extensions import db
 from link_ease.models import User, Link
 from link_ease import create_app
 from flask_login import current_user, login_user
+from ..settings import config_dict
 
 
 class ShortenLinkTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_file='test_settings.py')
+        self.app = create_app(config=config_dict['prod'])
 
         self.appctx = self.app.app_context()
 

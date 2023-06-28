@@ -5,11 +5,12 @@ from link_ease import create_app
 from link_ease.utils.views import generate_reset_token
 from datetime import datetime, timedelta
 import bcrypt
+from ..settings import config_dict
 
 
 class AuthTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = create_app(config_file='test_settings.py')
+        self.app = create_app(config=config_dict['prod'])
 
         self.appctx = self.app.app_context()
 
