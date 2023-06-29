@@ -1,2 +1,2 @@
-FLASK_APP=link_ease
+FLASK_APP=app.py
 FLASK_ENV=development
