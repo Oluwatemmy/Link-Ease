@@ -1,9 +1,3 @@
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 .container {
     width: 400px;
     margin: 100px auto;
@@ -25,6 +19,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 input[type="url"] {
@@ -35,24 +30,14 @@ input[type="url"] {
     outline: none;
 }
 
-button {
-    margin-left: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    height: 41px;
-}
 
 button:hover {
-    background-color: #0056b3;
+    background-color: black;
 }
 
 .form-control {
     height: 41px;
-    background: #f2f2f2;
+    background: black;
     box-shadow: none !important;
     border: none;
     display: block;
@@ -63,9 +48,7 @@ button:hover {
     font-weight: 400;
     line-height: 1.5;
     border-radius: 3px;
-} */
-
-/* Global styles */
+}
 html {
 	box-sizing: border-box;
 	font-family: Arial, sans-serif;
@@ -76,31 +59,19 @@ html {
 	box-sizing: inherit;
 }
 
-body {
-	margin: 0;
-	padding: 0;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-/*     align-items: center; */
-}
 
 
-/* Header styles */
-/* header {
+header {
 	background-color: #8f94fb;
 	color: #fff;
 	padding: 1rem;
-} */
+}
 
 h1 {
 	margin: 0;
 }
 
-/* nav ul {
+ nav ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -118,15 +89,9 @@ nav a {
 
 nav a:hover {
 	text-decoration: underline;
-} */
-
-
-
-/* Hero section styles */
-
-
+}
 .maincontainer h1 {
-    color: #fff;
+    color: black;
     text-align: center;
 }
 
@@ -134,7 +99,7 @@ form label {
     display: block;
     margin-bottom: 20px;
     margin-left: 10px;
-    color: #fff;
+    color: black;
 }
 
 form {
@@ -144,11 +109,24 @@ form {
 }
 
 form input[type="text"] {
-    /* width: 90%; */
+    width: 50%;
     padding: 10px;
-    margin: 10px auto;
     border-radius: 20px;
-    border: 2px solid #8f94fb;
+    box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+form input[type="email"] {
+    width: 20em;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.25);
+}
+
+form input[type="password"] {
+    width: 18em;
+    padding: 10px;
+    border-radius: 20px;
     box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -167,10 +145,14 @@ form button:hover {
     border: 2px solid #8f94fb;
 }
 
-/* Benefits section styles */
+.register-form{
+    margin-top: 20px;
+}
 .benefits {
-	background-color: #fff;
+	background-color: #ADD8E6;
+	margin-top:20px;
 	padding: 2rem 1rem;
+	box-sizing: border-box;
 }
 
 ul {
@@ -182,16 +164,14 @@ li {
 	margin-bottom: 1rem;
 }
 
-/* Demo section styles */
 .demo {
-	background-color: #f8f8f8;
+	background-color: #ADD8E6;
 	padding: 4rem 1rem;
 	text-align: center;
 }
 
-/* Testimonials section styles */
 .testimonials {
-	background-color: #fff;
+	background-color: #ADD8E6;
 	padding: 2rem 1rem;
 	text-align: center;
 }
@@ -205,9 +185,9 @@ cite {
 	font-weight: bold;
 }
 
-/* Footer styles */
+
 footer {
-	background-color: #8f94fb;
+	background-color:  #C0C0C0;
 	color: #fff;
 	text-align: center;
 	padding: 1rem;
@@ -215,16 +195,23 @@ footer {
 
 
 .maincontainer {
-    width: 80%;
+    width: 100%;
     height: auto;
     min-height: 350px;
     padding: 40px;
     border-radius: 30px;
     box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.25);
-    background: #4e54c8;
-    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);
-    background: linear-gradient(to right, #8f94fb, #4e54c8);
+    background-color: #ADD8E6;
     margin: auto;
     margin-top: 5rem;
 }
 
+body {
+    background-color: gray;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-color: lightgray;
+    }
+}

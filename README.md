@@ -15,8 +15,8 @@
 <!-- Project Logo -->
 <br />
 <div align="center">
-  <a href="https://sciz.site">
-    <img src="website/static/scissor-logo/default.png" alt="Logo" width="90%" height="30%">
+  <a href="https://lne-5e10a4711a60.herokuapp.com">
+    <img src="https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease.png" alt="Logo" width="50%" height="30%">
   </a>
 </div>
 
@@ -83,7 +83,7 @@ Link-Ease is a powerful URL shortening tool designed to make sharing links easie
 
 Our intuitive interface, customizable links, and detailed analytics provide a seamless user experience, making it the perfect tool for marketers, content creators, and anyone looking to share links efficiently. Join Scissor today and experience the power of concise, shareable links.
 
-Live Site: [sciz.site](https://www.sciz.site)
+Live Site: [link-ease](https://lne-5e10a4711a60.herokuapp.com)
 
 Full Documentation: [Readme](https://github.com/Oluwatemmy/Link-Ease/blob/main/README.md)
 
@@ -159,7 +159,7 @@ This tool can be accessed via the deployed site or you can run it locally on you
 
 ### Live Link
 
-Deployed site: [sciz.site](https://www.sciz.site) - hosted via [heroku](https://www.heroku.com) 
+Deployed site: [link-ease](https://lne-5e10a4711a60.herokuapp.com) - hosted via [heroku](https://www.heroku.com) 
 
 ### Localhost
 
@@ -228,17 +228,12 @@ On gitbash terminal
 
 <br />
 
-[![Link-Ease Screenshot][linkease-screenshot]](https://github.com/Ze-Austin/scissor/blob/main/website/static/screenshots/scissor.png)
+[![Link-Ease Screenshot][linkease-screenshot]](https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease_homepage.png)
 
 <br/>
 
 ---
 
-<br/>
-
-[![Dashboard Screenshot][dashboard-screenshot]](https://github.com/Ze-Austin/scissor/blob/main/website/static/screenshots/dashboard.png)
-
-<br/>
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
