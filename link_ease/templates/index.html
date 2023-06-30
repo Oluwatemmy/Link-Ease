@@ -2,18 +2,21 @@
 <html>
 
 <head>
-    <title>URL Shortener</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Link Ease - URL Shortener</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='image/linkease.png') }}" type="image/png">
 </head>
 
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #8f94fb;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url_for('short.index') }}">Link-Ease</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                    <img src="{{ url_for('static', filename='image/linkease.png') }}" alt="" width="35" height="26" class="d-inline-block align-text-top">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,25 +25,25 @@
                     {% if current_user.is_authenticated %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ url_for('short.index') }}">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('short.logout') }}">Logout</a>
+                                <a class="nav-link" href="{{ url_for('links.stats') }}">History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('short.stats') }}">History</a>
+                                <a class="nav-link" href="{{ url_for('users.logout') }}">Logout</a>
                             </li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ url_for('short.index') }}">Home</a>
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('short.login') }}">Login</a>
+                                <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('short.register') }}">Register</a>
+                                <a class="nav-link" href="{{ url_for('users.register') }}">Register</a>
                             </li>
                         </ul>
                     {% endif %}
@@ -52,7 +55,7 @@
 
         <div class="maincontainer">
             <h1>LinkEase - URL Shortener</h1>
-            <form action="{{ url_for('short.add_link') }}" method="POST">
+            <form action="{{ url_for('links.add_link') }}" method="POST">
                 <label for="long-url">Enter or Paste Your long URL:</label>
                 <input type="text" id="long-url" name="long-url" style="width: 80%;"
                     placeholder="Enter your long URL here" required>

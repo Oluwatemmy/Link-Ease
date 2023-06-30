@@ -1,11 +1,11 @@
-import unittest
-from link_ease.extensions import db
-from link_ease.models import User
-from link_ease import create_app
-from link_ease.utils.views import generate_reset_token
-from datetime import datetime, timedelta
 import bcrypt
+import unittest
+from link_ease import create_app
+from link_ease.models import User
 from ..settings import config_dict
+from link_ease.extensions import db
+from datetime import datetime, timedelta
+from link_ease.utils.views import generate_reset_token
 
 
 class AuthTestCase(unittest.TestCase):
@@ -33,9 +33,6 @@ class AuthTestCase(unittest.TestCase):
 
 
     def test_index(self):
-        """
-        Test that the index page loads correctly
-        """
         response = self.client.get('/')
         assert response.status_code == 200
 

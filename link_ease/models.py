@@ -1,8 +1,8 @@
-from datetime import datetime
 import string
 from random import choices
-from .extensions import db, login_manager, bcrypt
+from datetime import datetime
 from flask_login import UserMixin
+from .extensions import db, login_manager, bcrypt
 
 
 class Link(db.Model):

@@ -256,7 +256,7 @@ Distributed under the MIT License. See <a href="https://github.com/Oluwatemmy/Li
 <!-- Contact -->
 ## Contact
 
-Dr Austin Wopara - [@Oluwatemmy15](https://twitter.com/Oluwatemmy15) - oluwaseyitemitope456@gmail.com
+Ajayi Oluwaseyi - [@Oluwatemmy15](https://twitter.com/Oluwatemmy15) - oluwaseyitemitope456@gmail.com
 
 Live Site: [sciz.site](https://www.sciz.site)
 
