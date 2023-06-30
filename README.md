@@ -16,7 +16,7 @@
 <br />
 <div align="center">
   <a href="https://lne-5e10a4711a60.herokuapp.com">
-    <img src="https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease.png" alt="Logo" width="50%" height="30%">
+    <img src="https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease.png" alt="Logo" width="50%" height="10%">
   </a>
 </div>
 
@@ -230,10 +230,6 @@ On gitbash terminal
 
 [![Link-Ease Screenshot][linkease-screenshot]](https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease_homepage.png)
 
-<br/>
-
----
-
 
 <p align="right"><a href="#readme-top">back to top</a></p>
 
@@ -253,7 +249,7 @@ Distributed under the MIT License. See <a href="https://github.com/Oluwatemmy/Li
 
 Ajayi Oluwaseyi - [@Oluwatemmy15](https://twitter.com/Oluwatemmy15) - oluwaseyitemitope456@gmail.com
 
-Live Site: [sciz.site](https://www.sciz.site)
+Live Site: [link-ease](https://lne-5e10a4711a60.herokuapp.com/)
 
 Project Link: [Link-Ease Repo](https://github.com/Oluwatemmy/Link-Ease)
 
@@ -294,8 +290,7 @@ This project was made possible by:
 [license-url]: https://github.com/Oluwatemmy/Link-Ease/blob/main/LICENSE.txt
 [twitter-shield]: https://img.shields.io/badge/-@Oluwatemmy15-1ca0f1?style=for-the-badge&logo=twitter&logoColor=white&link=https://twitter.com/Oluwatemmy15
 [twitter-url]: https://twitter.com/Oluwatemmy15
-[linkease-screenshot]: website/static/screenshots/scissor.png
-[dashboard-screenshot]: website/static/screenshots/dashboard.png
+[linkease-screenshot]: https://github.com/Oluwatemmy/Link-Ease/blob/main/link_ease/static/image/linkease_homepage.png
 [python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [flask]: https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white
 [jinja]: https://img.shields.io/badge/jinja-white.svg?style=for-the-badge&logo=jinja&logoColor=black
