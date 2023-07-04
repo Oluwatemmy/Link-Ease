@@ -183,7 +183,7 @@ Python3: [Get Python](https://www.python.org/downloads/)
    ```sh
    <your-venv-name>\Scripts\activate
    ```
-On gitbash terminal
+    On gitbash terminal
     ```sh
     source <your-venv-name>/Scripts/activate
     ```
